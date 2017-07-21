@@ -12,8 +12,10 @@ gem 'rails', '~> 5.0.1'
 # Authentication library
 gem 'devise'
 # Bootstrap for UI
-gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+gem 'twitter-bootstrap-rails'
+# Yahoo api for stocks
+gem 'stock_quote'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

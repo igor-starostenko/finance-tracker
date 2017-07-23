@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Stock < ApplicationRecord
+class Stock < ActiveRecord::Base
   def self.find_by_ticker(ticker_symbol)
     where(ticker: ticker_symbol).first
   end

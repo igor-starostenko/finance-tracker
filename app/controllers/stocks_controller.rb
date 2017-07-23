@@ -5,8 +5,8 @@ class StocksController < ApplicationController
 
   def search
     search_for_stock(params[:stock]) if params[:stock]
-    return render json: stock if stock
-    # return render partial: 'lookup' if stock
+    # return render json: stock if stock
+    return render partial: 'lookup' if stock
     render status: :not_found, nothing: true
   end
 

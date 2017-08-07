@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserStocksController < ApplicationController
   before_action :set_user_stock, only: %i[show edit update destroy]
 

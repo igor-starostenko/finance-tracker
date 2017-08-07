@@ -54,9 +54,8 @@ class UserStocksController < ApplicationController
   # DELETE /user_stocks/1.json
   def destroy
     @user_stock.destroy
-    message = 'Stock was successfully removed from portfolio.'
     respond_to do |format|
-      format.html { redirect_to my_portfolio_path, notice: message }
+      format.html { redirect_to my_portfolio_path, notice: message(:removed) }
       format.json { head :no_content }
     end
   end

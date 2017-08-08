@@ -1,7 +1,8 @@
 <div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4><%= t('.sign_in', default: 'Sign in') %></h4>
-  </div>
+   <div class="panel-heading list-inline">
+       <li><h4><%= t('.sign_in', default: 'Sign in') %></h4></li>
+       <span class="pull-right"><%= link_to "Sign up", new_user_registration_path %></span>
+   </div>
   <div class="panel-body">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>
       <div class="form-group">

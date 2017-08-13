@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   has_many :user_stocks
   has_many :stocks, through: :user_stocks
+  has_many :friendships
+  has_many :friends, through: :friendships
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -26,5 +28,24 @@ class User < ApplicationRecord
     stock = Stock.find_by_ticker(ticker_symbol)
     return false unless stock
     user_stocks.where(stock_id: stock.id).exists?
+  end
+
+  def not_friends_with?(friend_id)
+    friendships.where(friend_id: friend_id).count.zero?
+  end
+
+  def except_current_user(users)
+    users.reject { |user| user.id == id }
+  end
+
+  def self.search(param)
+    return User.none if param.blank?
+    param.strip!
+    param.downcase!
+    (matches(:first_name, param) + matches(:last_name, param)).uniq
+  end
+
+  def self.matches(field_name, param)
+    where("lower(#{field_name}) like ?", "%#{param}%")
   end
 end

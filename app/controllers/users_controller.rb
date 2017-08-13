@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  attr_reader :users
+
   def my_portfolio
     @user_stocks = current_user.user_stocks
     @user = current_user
@@ -8,5 +10,28 @@ class UsersController < ApplicationController
 
   def my_friends
     @friendships = current_user.friends
+  end
+
+  def search
+    @users = User.search(params[:search_param])
+    render_users
+  end
+
+  def add_friend
+    @friend = User.find(params[:friend])
+    current_user.friendships.build(friend_id: @friend.id)
+    if current_user.save
+      redirect_to my_friends_path, notice: 'Friend was successfully added.'
+    else
+      redirect_to my_friends_path, flash[:error] = 'Couldn\'t add friend.'
+    end
+  end
+
+  private
+
+  def render_users
+    return render status: :not_found, nothing: true unless users
+    @users = current_user.except_current_user(users)
+    render partial: 'friends/lookup'
   end
 end

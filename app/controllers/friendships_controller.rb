@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FriendshipsController < ApplicationController
   def destroy
     current_user.friendships.where(friend_id: params[:id]).first.destroy

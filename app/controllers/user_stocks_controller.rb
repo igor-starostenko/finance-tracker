@@ -11,8 +11,7 @@ class UserStocksController < ApplicationController
 
   # GET /user_stocks/1
   # GET /user_stocks/1.json
-  def show
-  end
+  def show; end
 
   # GET /user_stocks/new
   def new
@@ -20,8 +19,7 @@ class UserStocksController < ApplicationController
   end
 
   # GET /user_stocks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /user_stocks
   # POST /user_stocks.json

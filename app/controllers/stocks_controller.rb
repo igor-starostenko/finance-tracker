@@ -17,7 +17,7 @@ class StocksController < ApplicationController
 
   private
 
-  def search_for_stock(stock)
+  def search_for_stock(_stock)
     @stock = Stock.find_by_ticker(params[:stock])
     @stock ||= Stock.new_from_lookup(params[:stock])
   end
